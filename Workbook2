@@ -1,0 +1,120 @@
+#Ex 1.3.1
+
+
+import numpy as np
+my_array = np.zeros(64).reshape(8,8)
+for i in range (0, 8):
+    for j in range (0, 8):
+        if (j + i) % 2 == 1:
+            my_array[i][j] = 1
+print(my_array)
+
+
+#Ex 1.3.2
+
+
+import numpy as np
+my_array = np.full((5, 5), np.arange(0, 5))
+print(array)
+
+
+#Ex 1.3.3
+
+
+import numpy as np
+my_array = np.random.random((3,3,3))
+print(my_array)
+
+
+#Ex 1.3.4
+
+
+import numpy as np
+print('Enter the size of matrix: ')
+size = int(input())
+my_array = np.full((size, size), 0)
+for i in range (0, size):
+    for j in range (0, size):
+        if i == 0 or j == 0 or i == size - 1 or j == size - 1:
+            my_array[i][j] = 1
+print(my_array)
+
+
+#Ex 1.3.5
+
+
+def res_sort(*array):
+    array = sorted(array)
+    array.reverse()
+    return array
+
+x = [6, 3, 7, 43, 321, 4]
+print(res_sort(*x))
+
+
+#Ex 1.3.6
+
+
+import numpy as np
+x = np.array([[23, 12, 7, 98, 100], [1, 1, 0, 0, 0],
+            [45, 102, 67, 0, 1], [21, 4, 8, 678, 99]]).reshape(4, 5)
+print(x)
+print('Shape: ', x.shape)
+print('Size: ', x.size)
+print('Ndim: ', x.ndim)
+
+
+#Ex 2.3.1
+
+
+import pandas as pd
+a = [5, 3]  #[x_coord, y_coord]
+b = [-3, 4]
+s1 = pd.Series(a)
+s2 = pd.Series(b)
+distance = ((s2[0] - s1[0]) ** 2 + (s2[1] - s1[0]) ** 2) ** 0.5
+print(distance)
+
+
+#Ex 2.3.2
+
+
+import pandas as pd
+url = 'https://raw.githubusercontent.com/chrisalbon/simulated_datasets/master/titanic.csv'
+dataframe = pd.read_csv(url)
+dataframe
+
+
+#Ex 2.3.3
+
+
+import pandas as pd
+dataframe = pd.read_csv('https://raw.githubusercontent.com/chrisalbon/simulated_datasets/master/titanic.csv')
+#dataframe.head(3)
+#dataframe.tail(3)
+#dataframe.shape
+#dataframe.describe()
+#dataframe.iloc[6:9]
+dataframe [dataframe['Survived'] == 1]
+
+
+#Ex 3.3.2
+
+
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+df_1 = pd.read_csv('https://raw.githubusercontent.com/akmand/datasets/master/iris.csv', usecols = ['sepal_length_cm'])
+df_2 = pd.read_csv('https://raw.githubusercontent.com/akmand/datasets/master/iris.csv', usecols = ['sepal_width_cm'])
+minmax_scale = preprocessing.MinMaxScaler(feature_range = (0, 1))
+z_scaler = preprocessing.StandardScaler()
+names_1 = df_1.columns
+names_2 = df_2.columns
+scaled_feature_1 = minmax_scale.fit_transform(df_1)
+scaled_feature_2 = z_scaler.fit_transform(df_2)
+scaled_df_1 = pd.DataFrame(scaled_feature_1, columns = names_1)
+scaled_df_2 = pd.DataFrame(scaled_feature_2, columns = names_2)
+print(scaled_df_1)
+print(scaled_df_2)
+print('Average: ', round(scaled_df_2.mean()))
+print('Standard deviation', scaled_df_2.std())
